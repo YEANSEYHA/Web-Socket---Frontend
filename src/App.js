@@ -5,6 +5,7 @@ function App() {
   const [socket, setSocket] = useState(null);
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
+  const [validColor, setValidColor] = useState("#FFFFFF");
 
   useEffect(() => {
     const newSocket = io("http://localhost:3000");
@@ -19,6 +20,11 @@ function App() {
 
     newSocket.on("users", (userList) => {
       setUsers(userList);
+    });
+
+    newSocket.on("validColor", (color) => {
+      console.log("Log color", color);
+      setValidColor(color);
     });
 
     setSocket(newSocket);
@@ -36,6 +42,18 @@ function App() {
 
   return (
     <div className="App">
+      <div>
+        <div>
+          <h2>Display Valid Color</h2>
+          <div
+            style={{
+              width: "100px",
+              height: "100px",
+              backgroundColor: validColor,
+            }}
+          ></div>
+        </div>
+      </div>
       <div>
         <div>
           <h2>Chat Room</h2>
