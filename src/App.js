@@ -37,7 +37,6 @@ function App() {
   return (
     <div className="App">
       <div>
-        <h1>Hello</h1>
         <div>
           <h2>Chat Room</h2>
           <div>
